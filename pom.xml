@@ -24,6 +24,9 @@
   </dependencies>
 
   <build>
+    <!-- create a deterministic name target/app.jar -->
+    <finalName>app</finalName>
+
     <plugins>
       <!-- Enable JUnit 5 -->
       <plugin>
@@ -32,6 +35,20 @@
         <version>3.2.5</version>
         <configuration>
           <useModulePath>false</useModulePath>
+        </configuration>
+      </plugin>
+
+      <!-- Make the jar runnable: adds Main-Class to manifest -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.example.App</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
     </plugins>
